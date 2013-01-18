@@ -1,0 +1,5 @@
+{% for m in messages reversed %}
+   <p>{{ m.date|date:"d-m-y, h:m:s" }} - {{ m.user }} said: 
+       <b>{{ m.text }}</b>
+   </p>
+{% endfor %}

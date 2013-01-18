@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>My django chat</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+</head>
+<body>
+  <div id="messages">retrieving messages...</div>
+
+  <form method="post" action="/">
+    {{ form }}
+    <input type="submit" name="chat"/>
+  </form>
+
+<script>
+  function getMessages() {
+    $.ajax({
+      url: "/messages/",
+      cache: false,
+      success: function(html){
+           $("#messages").html(html);
+      }
+    });
+    setTimeout('updateMsg()', 2000);
+  }
+  getMessages();
+</script>
+
+</body>
+</html>
