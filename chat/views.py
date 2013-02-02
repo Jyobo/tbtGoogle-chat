@@ -8,6 +8,11 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 import datetime
 
+class Hresponse():
+     
+
+        
+
 class MessageForm(ModelForm):
     class Meta:
         model = Message
@@ -22,9 +27,10 @@ def base(request):
             m = form.save(commit=False)
             m.user = request.user
             m.save()
-            return HttpResponseRedirect('/chat/')     else:
-        form = MessageForm()
-    return render_to_response('base.html', {'form':form }, context_instance=RequestContext(request))
+            return HttpResponseRedirect('/chat/')     
+        else:
+            form = MessageForm()
+            return render_to_response('base.html', {'form':form }, context_instance=RequestContext(request))
 
 
 @login_required
