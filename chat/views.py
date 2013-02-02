@@ -8,7 +8,15 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 import datetime
 
-class Hresponse():
+class valid_form():
+      if form.is_valid():
+            m = form.save(commit=False)
+            m.user = request.user
+            m.save()
+            return HttpResponseRedirect('/chat/')     
+        else:
+            form = MessageForm()
+            return render_to_response('base.html', {'form':form }, context_instance=RequestContext(request))
      
 
         
@@ -23,14 +31,7 @@ class MessageForm(ModelForm):
 def base(request):
     if request.method == "POST":
         form = MessageForm(data=request.POST)
-        if form.is_valid():
-            m = form.save(commit=False)
-            m.user = request.user
-            m.save()
-            return HttpResponseRedirect('/chat/')     
-        else:
-            form = MessageForm()
-            return render_to_response('base.html', {'form':form }, context_instance=RequestContext(request))
+        valid_form()
 
 
 @login_required
