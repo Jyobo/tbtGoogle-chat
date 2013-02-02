@@ -1,3 +1,0 @@
-$ git rm -r -f chat
-rm 'chat/*.pyc'
-rm 'google/*.pyc'
