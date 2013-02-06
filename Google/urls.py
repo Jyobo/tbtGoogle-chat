@@ -1,12 +1,16 @@
 from django.conf.urls import *
+from chat.views import *
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('chat.views',
-    url(r'^/$', 'base'),
-    url(r'^/messages/$', 'messages'),
+	('^hello/$', hello),
+    ('^$', base),
+    (r'^login/$', login_user),
+    (r'^messages/$', messages),
+    (r'^accounts/', include('registration.backends.default.urls')),
     # Examples:
     # url(r'^$', 'Google.views.home', name='home'),
     # url(r'^Google/', include('Google.foo.urls')),
