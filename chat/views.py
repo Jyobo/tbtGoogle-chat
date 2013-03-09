@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.forms import ModelForm
+from django import forms
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 import datetime
@@ -38,7 +39,7 @@ class MessageForm(ModelForm):
 		exclude = ['user']
 
 
-# @login_required
+@login_required
 def base(request):
 	if request.method == "POST":
 		form = MessageForm(data=request.POST)
